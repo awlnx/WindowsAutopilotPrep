@@ -48,6 +48,7 @@ Try {
     $null = Dismount-WindowsImage -Path $MountedImage -Save
     $null = Dismount-WindowsImage -Path $MountedBoot -Save
     Write-Host "Creating ISO"
+    New-Item -Path -ItemType Directory ".\completedImage"
     New-IsoFile -Path .\completedImage\windows.iso -Source (Get-ChildItem $WorkingDirectory).FullName -BootFile "$WindowsFiles/boot/boot.sdi"
     Dismount-DiskImage -ImagePath $Iso.FullName 
    
